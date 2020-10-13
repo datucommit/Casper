@@ -1,30 +1,43 @@
-{{!--
-This error template is used for all 404 errors, which might occur on your site.
-It's a good idea to keep this template as minimal as possible in terms of both file size and complexity.
---}}
+<style>*{
+    transition: all 0.6s;
+}
 
-{{!< default}}
-{{!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template --}}
+html {
+    height: 100%;
+}
 
-<header class="site-header">
-    {{> site-header}}
-</header>
+body{
+    font-family: 'Lato', sans-serif;
+    color: #888;
+    margin: 0;
+}
 
-<main id="site-main" class="site-main outer error-content">
-    <div class="inner">
-        <section class="error-message">
-            <h1 class="error-code">{{statusCode}}</h1>
-            <p class="error-description">{{message}}</p>
-            <a class="error-link" href="{{@site.url}}">Go to the front page →</a>
-        </section>
+#main{
+    display: table;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
 
-        {{#get "posts" limit="3" include="authors,tags"}}
-            <div class="post-feed">
-                {{#foreach posts}}
-                {{> "post-card"}}
-                {{/foreach}}
-            </div>
-        {{/get}}
+.fof{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.fof h1{
+    font-size: 50px;
+    display: inline-block;
+    padding-right: 12px;
+    animation: type .5s alternate infinite;
+}
+
+@keyframes type{
+    from{box-shadow: inset -3px 0px 0px #888;}
+    to{box-shadow: inset -3px 0px 0px transparent;}
+}
+</style>
+<div id="main">
+    <div class="fof">
+        <h1>Error 404</h1>
     </div>
-</main>
+</div>

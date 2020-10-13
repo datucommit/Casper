@@ -1,0 +1,65 @@
+{{!< default}}
+
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+<style>
+    .main-page-container {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 70% 30%;
+        grid-template-areas: "header header" "article article" "article article";
+    }
+    .main-section-container {
+        margin-left: 11px;
+        margin-right: 11px;
+        min-width: 200px;
+        box-sizing: content-box;
+        grid-area: article;
+        max-width: calc(100% - 18px);
+    }
+    .main-page-container {
+        width: 100%;
+    }
+</style>
+{{#post}}
+    <div class="main-page-container">
+        <div class="article-header-container">
+            <div class="article-header">
+                phone number lookups
+            </div>
+            <div class="centered-logo">
+                <img src="{{feature_image}}"></div>
+            <div class="top-right-links">
+                <!--<div
+                    style="display: flex; align-items: center; margin-left: 0px; margin-top: 5px; margin-bottom: 5px;">
+                    <div style="display: inline-block; background-color: rgb(238, 0, 23); border-radius: 50%; height: 5px; width: 5px; margin-right: 5px;"></div>
+                    <a href="http://members.staterecords.org/customer/login"
+                       style="margin-left: auto; font-size: 12px; line-height: 14px; color: rgb(48, 89, 131); text-decoration: none;">Login</a>
+                </div>
+                <div
+                    style="display: flex; align-items: center; margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
+                    <div
+                        style="display: inline-block; background-color: rgb(238, 0, 23); border-radius: 50%; height: 5px; width: 5px; margin-right: 5px;"></div>
+                    <a href="http://members.staterecords.org/customer/help"
+                       style="margin-left: auto; font-size: 12px; line-height: 14px; color: rgb(48, 89, 131); text-decoration: none;">Contact
+                        us</a></div>-->
+            </div>
+        </div>
+        <div class="main-section-container">
+            <div class="main-section">
+                <h2>{{{title}}}</h2>
+                {{{content}}}
+                <div class="main-section"></div>
+            </div>
+        </div>
+    </div>
+
+{{/post}}
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+    <script>
+    </script>
+{{/contentFor}}
