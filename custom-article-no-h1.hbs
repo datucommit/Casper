@@ -1,0 +1,189 @@
+{{!< default}}
+
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+<style>
+    .main-page-container {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 70% 30%;
+        grid-template-areas: "header header" "article article" "article article";
+    }
+    .main-section-container {
+        margin-left: 11px;
+        margin-right: 11px;
+        min-width: 200px;
+        box-sizing: content-box;
+        grid-area: article;
+        max-width: calc(100% - 18px);
+    }
+    .main-page-container {
+        width: 100%;
+    }
+    .address{
+            background-color: #f7f7f7;
+            display: inline-block;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding: 8px 14px;
+            max-width: 100%;
+    }
+    h2{
+        font-family: Georgia;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 20px;
+        color: #000000;
+    }
+    li strong {
+        font-family: Arial;
+        font-size: 15px;
+        font-weight: bold;
+        color: rgb(63, 99, 144);
+    }
+    .breadcrumb {
+        font-size: 12px;
+        padding: 7px 0px;
+        border-bottom: solid 1px #ccc;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    .breadcrumb li {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
+    }
+    .breadcrumb li + li:before {
+        background-image: url({{asset 'images/arw_red.png'}});
+        background-repeat: no-repeat;
+        content: "";
+        display: inline-block;
+        height: 7px;
+        margin-left: 6px;
+        margin-right: 5px;
+        width: 5px;
+    }
+
+    .breadcrumb li.home-icon a {
+        background-image: url({{asset 'images/home.svg'}});
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-bottom: solid 1px transparent;
+        display: block;
+        font-size: 0;
+        height: 14px;
+        padding-bottom: 1px;
+        text-decoration: underline;
+        width: 13px;
+    }
+    ol li:before {
+        all: initial;
+    }
+
+    @media (max-width: 650px) {
+        .breadcrumb li span {
+            font-size: 12px;
+        }
+    }
+
+</style>
+{{#post}}
+    <div class="main-page-container">
+        <div class="article-header-container">
+            <div class="article-header">
+                {{state}} Phone Number Lookup
+            </div>
+            <div class="centered-logo">
+                <a href="https://{{subdomain}}.phonenumbers.org">
+                    <img style="margin: 0;" src="{{asset '/images/pn_logos/california.png'}}">
+                </a>
+            </div>
+            <div class="top-right-links">
+                <!--<div
+                    style="display: flex; align-items: center; margin-left: 0px; margin-top: 5px; margin-bottom: 5px;">
+                    <div style="display: inline-block; background-color: rgb(238, 0, 23); border-radius: 50%; height: 5px; width: 5px; margin-right: 5px;"></div>
+                    <a href=""
+                       style="margin-left: auto; font-size: 12px; line-height: 14px; color: rgb(48, 89, 131); text-decoration: none;">Login</a>
+                </div>
+                <div
+                    style="display: flex; align-items: center; margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
+                    <div
+                        style="display: inline-block; background-color: rgb(238, 0, 23); border-radius: 50%; height: 5px; width: 5px; margin-right: 5px;"></div>
+                    <a href=""
+                       style="margin-left: auto; font-size: 12px; line-height: 14px; color: rgb(48, 89, 131); text-decoration: none;">Contact
+                        us</a></div>-->
+            </div>
+        </div>
+        <div class="main-section-container">
+            <div class="main-section style" style="padding-top: 25px">
+                <h1 style="font-family: Georgia; font-style: normal; font-weight: normal; font-size: 36px; line-height: 41px; text-align: center; color: #214366;">{{{title}}}</h1>
+                <!--BREADCRUMBS-->
+                <ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb gray" style="margin-top:-10px;">
+                    <li class="home-icon" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="https://{{subdomain}}.phonenumbers.org">
+                            <span style="display: none" itemprop="name">{{subdomain}}.phonenumbers.org</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    {{#has tag="areacodes"}}
+                        {{^has slug="areacodes"}}
+                            <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                                <a itemprop="item" href="https://{{subdomain}}.phonenumbers.org/areacodes">
+                                    <span itemprop="name">Area Codes</span>
+                                </a>
+                                <meta itemprop="position" content="2">
+                            </li>
+                            <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                                <span itemprop="name">{{title}}</span>
+                                <meta itemprop="position" content="3">
+                            </li>
+                        {{ else }}
+                            <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                                <span itemprop="name">{{title}}</span>
+                                <meta itemprop="position" content="2">
+                            </li>
+                        {{/has }}
+                    {{else has tag="scams"}}
+                        {{^has slug="scams"}}
+                        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                            <a itemprop="item" href="https://{{subdomain}}.phonenumbers.org/scams">
+                                <span itemprop="name">Phone Scams</span>
+                            </a>
+                            <meta itemprop="position" content="2">
+                        </li>
+                        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">{{title}}</span>
+                            <meta itemprop="position" content="3">
+                        </li>
+                        {{ else }}
+                            <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                                <span itemprop="name">{{title}}</span>
+                                <meta itemprop="position" content="2">
+                            </li>
+                        {{/has }}
+                    {{ else }}
+                        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">{{title}}</span>
+                            <meta itemprop="position" content="2">
+                        </li>
+                    {{/has }}
+                </ol>
+                {{{content}}}
+                <div class="main-section"></div>
+            </div>
+        </div>
+    </div>
+
+{{/post}}
+
+
+
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+{{/contentFor}}
